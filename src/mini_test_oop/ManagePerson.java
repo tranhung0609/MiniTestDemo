@@ -29,7 +29,7 @@ public class ManagePerson {
         String sex = scanner.nextLine();
         System.out.println("Nhập địa chỉ");
         String address = scanner.nextLine();
-        System.out.println("Nhập email");
+        System.out.println("Nhập địa chỉ email");
         String email = scanner.nextLine();
         for (Person p:
              persons) {
@@ -38,7 +38,7 @@ public class ManagePerson {
                 return null;
             }
         }
-        Person person = new Person(name,phoneNumber,address,email, group,sex);
+        Person person = new Person(name,phoneNumber,address, group,sex,email);
         persons.add(person);
         writeFile(persons,PATH_NAME);
         return person;
@@ -115,7 +115,7 @@ public class ManagePerson {
             String line;
             while ((line=bufferedReader.readLine())!=null){
                 String[] strings = line.split(",");
-                persons.add(new Person(strings[0],(Long.parseLong(strings[1])),(strings[2]),(strings[3]),(strings[4]),(strings[5])));
+                persons.add(new Person(strings[0],Long.parseLong(strings[1]),(strings[2]),(strings[3]),(strings[4]),(strings[5])));
             }
         }catch (IOException ioe){
             System.out.println(ioe.getMessage());
@@ -128,7 +128,7 @@ public class ManagePerson {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path));
             for (Person person:
                  persons) {
-                bufferedWriter.write(person.getPhoneNumber() + "," + person.getName() + "," + person.getAddress() + "," + person.getEmail() + "," + person.getGroup() + "," + person.getSex() + "\n");
+                bufferedWriter.write(person.getName() + "," + person.getPhoneNumber() + "," + person.getAddress() + "," + person.getEmail() + "," + person.getGroup() + "," + person.getSex() + "\n");
             }
             bufferedWriter.close();
             System.out.println("Ghi tệp thành công !!!!");
